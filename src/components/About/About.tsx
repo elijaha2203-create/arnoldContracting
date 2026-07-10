@@ -19,7 +19,7 @@ export function About() {
         <div className="about__copy">
           <h2 className="about__title">A family business, not a subcontractor pipeline</h2>
           <p className="about__paragraph">
-            {business.name} has spent two decades in the Merrimack Valley
+            {business.name} has spent two decades in Essex County
             building additions, remodeling kitchens, and fixing the things
             other crews rush through. We're small on purpose &mdash; every job
             gets the same owner-level attention, whether it's a full

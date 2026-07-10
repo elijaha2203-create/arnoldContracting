@@ -77,15 +77,15 @@
   width: 18px;
   height: 18px;
   flex-shrink: 0;
-  color: var(--brand-hover);
+  color: var(--sage);
 }
 
 .site-header__menu-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.75rem;
+  height: 2.75rem;
   border-radius: var(--radius-sm);
   border: 1px solid var(--hairline);
   background: transparent;

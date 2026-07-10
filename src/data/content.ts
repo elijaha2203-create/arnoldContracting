@@ -6,7 +6,7 @@ export const business = {
   phoneHref: 'tel:+15085550173',
   email: 'info@arnoldcontracting.com',
   emailHref: 'mailto:info@arnoldcontracting.com',
-  address: 'Serving Andover, MA and the Merrimack Valley',
+  address: 'Serving Essex County, MA',
   license: 'MA HIC #000000 · Licensed & Insured',
 };
 
@@ -197,7 +197,7 @@ export const testimonials: Testimonial[] = [
 export const credentials = [
   { label: 'Family-owned & operated' },
   { label: 'Licensed & fully insured' },
-  { label: '20+ years serving the Merrimack Valley' },
+  { label: '20+ years serving Essex County, MA' },
 ];
 
 /** `imageId` is the CDN suffix after `photo-` on images.unsplash.com (verified, non-Plus). */

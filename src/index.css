@@ -19,7 +19,7 @@
   --navy: #0d1b2a;
   --forest-deep: #0f3d2e;
   --forest-mid: #1f6f4a;
-  --sage: #ffffff;
+  --sage: #a3c9a8;
   --paper: oklch(97% 0.006 150);
 
   /* Derived tones in OKLCH, precomputed for broad browser support
@@ -27,9 +27,9 @@
   --charcoal-raised: oklch(11% 0.006 250);
   --navy-raised: oklch(20% 0.035 240);
   --forest-deep-raised: oklch(34% 0.07 155);
-  --forest-mid-hover: oklch(100% 0.00011 271.152);
+  --forest-mid-hover: oklch(43% 0.095 155);
   --forest-mid-active: oklch(40% 0.095 155);
-  --sage-dim: oklch(100% 0.00011 271.152);
+  --sage-dim: oklch(73% 0.05 145);
   --hairline: oklch(82% 0.06 145 / 16%);
   --hairline-strong: oklch(24.984% 0.07508 142.932 / 0.3);
 

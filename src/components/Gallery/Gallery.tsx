@@ -11,7 +11,7 @@ export function Gallery() {
         <div ref={ref} className={`gallery__head ${className}`}>
           <h2 className="gallery__title">Recent work</h2>
           <p className="gallery__intro">
-            A sample of finished projects across the Merrimack Valley &mdash;
+            A sample of finished projects across Essex County, MA &mdash;
             more added as each job wraps.
           </p>
         </div>
