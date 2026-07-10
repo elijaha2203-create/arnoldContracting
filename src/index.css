@@ -66,6 +66,27 @@ body {
   background: var(--bg);
 }
 
+a,
+a:visited,
+a:hover,
+a:active,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+span,
+label,
+button,
+input,
+textarea,
+select {
+  color: var(--text);
+}
+
 h1,
 h2 {
   font-family: var(--heading);
