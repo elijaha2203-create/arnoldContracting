@@ -62,34 +62,8 @@
 
 body {
   margin: 0;
-}
-
-#root,
-#root :is(
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    p,
-    span,
-    li,
-    a,
-    button,
-    label,
-    small,
-    strong,
-    em,
-    code
-  ) {
   color: var(--text);
-}
-
-#root a:visited,
-#root a:hover,
-#root a:active {
-  color: var(--text);
+  background: var(--bg);
 }
 
 h1,
