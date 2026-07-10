@@ -3,8 +3,8 @@
   padding: 5px 10px;
   border-radius: 5px;
   color: var(--text-h);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
+  background: transparent;
+  border: 2px solid var(--accent-border);
   transition: border-color 0.3s;
   margin-bottom: 24px;
 
