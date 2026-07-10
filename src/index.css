@@ -85,7 +85,7 @@ select {
 
 a {
   color: var(--text);
-  text-decoration-color: color-mix(in srgb, var(--text) 80%, transparent);
+  text-decoration-color: color-mix(in srgb, var(--text) 95%, transparent);
 }
 
 a:hover,
