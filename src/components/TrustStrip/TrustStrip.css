@@ -57,6 +57,6 @@
 .trust-strip__check {
   width: 18px;
   height: 18px;
-  color: var(--brand-hover);
+  color: var(--sage);
   flex-shrink: 0;
 }
