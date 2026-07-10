@@ -1,0 +1,62 @@
+.trust-strip {
+  background: var(--surface-1);
+  border-block: 1px solid var(--hairline);
+}
+
+.trust-strip__inner {
+  max-width: 78rem;
+  margin: 0 auto;
+  padding: var(--space-xl) clamp(1.25rem, 4vw, 2.5rem);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xl);
+}
+
+.trust-strip__stats {
+  display: flex;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  flex-wrap: wrap;
+}
+
+.trust-strip__stats li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.trust-strip__value {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 900;
+  color: var(--ink-strong);
+  letter-spacing: -0.02em;
+}
+
+.trust-strip__label {
+  font-size: 0.85rem;
+  color: var(--ink-dim);
+  font-weight: 600;
+}
+
+.trust-strip__credentials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md) var(--space-xl);
+}
+
+.trust-strip__credentials li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink-strong);
+}
+
+.trust-strip__check {
+  width: 18px;
+  height: 18px;
+  color: var(--brand-hover);
+  flex-shrink: 0;
+}

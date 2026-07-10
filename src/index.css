@@ -1,111 +1,256 @@
+@import '@fontsource/barlow/400.css';
+@import '@fontsource/barlow/500.css';
+@import '@fontsource/barlow/600.css';
+@import '@fontsource/barlow/700.css';
+@import '@fontsource/barlow/800.css';
+@import '@fontsource/barlow/900.css';
+
+/* ---------------------------------------------------------------
+   Design tokens — Arnold Contracting
+   Canonical hex values come from DESIGN.md. Derived tones use CSS
+   relative-color syntax (OKLCH) so the palette stays perceptually
+   even without redefining the canonical brand hex values.
+   --------------------------------------------------------------- */
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  color-scheme: dark;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+  /* Canonical brand colors (DESIGN.md) */
+  --charcoal: #070809;
+  --navy: #0d1b2a;
+  --forest-deep: #0f3d2e;
+  --forest-mid: #1f6f4a;
+  --sage: #ffffff;
+  --paper: oklch(97% 0.006 150);
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
+  /* Derived tones in OKLCH, precomputed for broad browser support
+     (avoids relying on relative-color `from` syntax) */
+  --charcoal-raised: oklch(11% 0.006 250);
+  --navy-raised: oklch(20% 0.035 240);
+  --forest-deep-raised: oklch(34% 0.07 155);
+  --forest-mid-hover: oklch(100% 0.00011 271.152);
+  --forest-mid-active: oklch(40% 0.095 155);
+  --sage-dim: oklch(100% 0.00011 271.152);
+  --hairline: oklch(82% 0.06 145 / 16%);
+  --hairline-strong: oklch(24.984% 0.07508 142.932 / 0.3);
+
+  /* Semantic roles */
+  --surface-0: var(--charcoal);
+  --surface-1: var(--navy);
+  --surface-2: var(--forest-deep);
+  --surface-2-raised: var(--forest-deep-raised);
+  --ink: var(--sage);
+  --ink-dim: var(--sage-dim);
+  --ink-strong: #f4f8f4;
+  --brand: var(--forest-mid);
+  --brand-hover: var(--forest-mid-hover);
+  --brand-active: var(--forest-mid-active);
+  --on-brand: #f4f8f4;
+  --danger: oklch(62% 0.19 25);
+  --success: var(--forest-mid);
+
+  /* Typography */
+  --font-sans: 'Barlow', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --lh-tight: 1.05;
+  --lh-heading: 1.15;
+  --lh-body: 1.6;
+
+  /* Spacing (4pt scale) */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  --space-4xl: 8rem;
+
+  /* Radii */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+  --radius-pill: 999px;
+
+  /* Shadows — used sparingly, only for interactive lift */
+  --shadow-lift: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-header: 0 1px 0 var(--hairline), 0 12px 32px rgba(0, 0, 0, 0.28);
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 160ms;
+  --duration-base: 280ms;
+  --duration-slow: 480ms;
+
+  /* z-index scale */
+  --z-base: 0;
+  --z-sticky: 10;
+  --z-header: 20;
+  --z-overlay: 30;
+  --z-modal: 40;
+  --z-toast: 50;
+
+  font-family: var(--font-sans);
+  color: var(--ink);
+  background: var(--surface-0);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
+* {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 body {
   margin: 0;
+  min-height: 100svh;
+  background: var(--surface-0);
+  color: var(--ink);
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
 }
 
 h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+h2,
+h3,
+h4 {
+  font-family: var(--font-sans);
+  color: var(--ink-strong);
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: var(--lh-heading);
+  text-wrap: balance;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
 p {
   margin: 0;
+  line-height: var(--lh-body);
+  letter-spacing: 0.01em;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
+a {
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+:focus-visible {
+  outline: 2px solid var(--sage);
+  outline-offset: 3px;
+}
+
+/* Reveal-on-scroll: visible by default; only animates once JS has confirmed
+   IntersectionObserver support and reduced-motion isn't requested. */
+.reveal-armed {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.reveal-armed.reveal-in {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--duration-slow) var(--ease-out-expo),
+    transform var(--duration-slow) var(--ease-out-expo);
+}
+
+/* Shared button primitives, reused by header, hero, and contact CTAs */
+.btn {
   display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2xs);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  padding: 0.9rem 1.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background-color var(--duration-fast) var(--ease-out-expo),
+    border-color var(--duration-fast) var(--ease-out-expo),
+    transform var(--duration-fast) var(--ease-out-expo),
+    box-shadow var(--duration-fast) var(--ease-out-expo);
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn--primary {
+  background: var(--brand);
+  color: var(--on-brand);
+}
+
+.btn--primary:hover {
+  background: var(--brand-hover);
+  box-shadow: var(--shadow-lift);
+}
+
+.btn--primary:active {
+  background: var(--brand-active);
+  box-shadow: none;
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: var(--hairline-strong);
+  color: var(--ink-strong);
+}
+
+.btn--ghost:hover {
+  border-color: var(--sage);
+  background: color-mix(in oklch, var(--sage) 10%, transparent);
+}
+
+.btn--sm {
+  padding: 0.6rem 1.25rem;
+  font-size: 0.9rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
 }
