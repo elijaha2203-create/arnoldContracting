@@ -6,7 +6,7 @@ export const business = {
   phoneHref: 'tel:+15085550173',
   email: 'info@arnoldcontracting.com',
   emailHref: 'mailto:info@arnoldcontracting.com',
-  address: 'Serving Andover, MA and the Merrimack Valley',
+  address: 'Serving the Northshore',
   license: 'MA HIC #000000 · Licensed & Insured',
 };
 
@@ -97,7 +97,7 @@ export const serviceCategories: ServiceCategory[] = [
       },
       {
         name: 'Interior Painting',
-        description: 'Clean lines and even coats, done after the finish carpentry — not before.',
+        description: 'Clean lines and even coats',
       },
     ],
   },
@@ -118,7 +118,7 @@ export const galleryProjects: GalleryProject[] = [
   {
     id: 'kitchen-andover',
     title: 'Kitchen Remodel',
-    location: 'Andover, MA',
+    location: 'Essex, MA',
     category: 'Remodeling',
     imageId: '1618832515490-e181c4794a45',
     alt: 'Custom kitchen cabinetry and window trim, finished in place',
@@ -126,7 +126,7 @@ export const galleryProjects: GalleryProject[] = [
   {
     id: 'bath-north-andover',
     title: 'Bathroom Remodel',
-    location: 'North Andover, MA',
+    location: 'Beverly, MA',
     category: 'Remodeling',
     imageId: '1638799869566-b17fa794c4de',
     alt: 'Bathroom remodel with a walk-in shower beside a freestanding tub',
@@ -134,7 +134,7 @@ export const galleryProjects: GalleryProject[] = [
   {
     id: 'deck-methuen',
     title: 'Custom Deck & Outdoor Living',
-    location: 'Methuen, MA',
+    location: 'Gloucester, MA',
     category: 'Exteriors',
     imageId: '1574120583586-de8847ae992c',
     alt: 'Wooden deck built off a home\u2019s rear glass door',
@@ -142,7 +142,7 @@ export const galleryProjects: GalleryProject[] = [
   {
     id: 'addition-lawrence',
     title: 'Whole-Home Addition',
-    location: 'Lawrence, MA',
+    location: 'Manchester, MA',
     category: 'Remodeling',
     imageId: '1676802037786-3697d60497ae',
     alt: 'Wood framing underway on a home addition construction site',
@@ -150,7 +150,7 @@ export const galleryProjects: GalleryProject[] = [
   {
     id: 'stairs-haverhill',
     title: 'Custom Staircase & Millwork',
-    location: 'Haverhill, MA',
+    location: 'Essex, MA',
     category: 'Carpentry',
     imageId: '1656733911006-fcad49fa0d52',
     alt: 'Hand-built wooden staircase inside a timber-framed home',
@@ -158,7 +158,7 @@ export const galleryProjects: GalleryProject[] = [
   {
     id: 'siding-tewksbury',
     title: 'Siding & Facade Replacement',
-    location: 'Tewksbury, MA',
+    location: 'Hamilton, MA',
     category: 'Exteriors',
     imageId: '1604177420528-44bb3e1dcd7b',
     alt: 'Close-up of a home\u2019s freshly finished wood siding',
@@ -178,7 +178,7 @@ export const testimonials: Testimonial[] = [
     quote:
       'They treated our kitchen like it was their own. Every cut was clean, every day they cleaned up before leaving \u2014 exactly what you hope for and rarely get.',
     name: 'Maria D.',
-    location: 'Andover, MA',
+    location: 'Beverly, MA',
   },
   {
     quote:
@@ -190,14 +190,14 @@ export const testimonials: Testimonial[] = [
     quote:
       'Our deck has held up through three winters without a single warped board. That is the kind of thing you only notice years later, when it does not go wrong.',
     name: 'James P.',
-    location: 'Methuen, MA',
+    location: 'Essex, MA',
   },
 ];
 
 export const credentials = [
   { label: 'Family-owned & operated' },
   { label: 'Licensed & fully insured' },
-  { label: '20+ years serving the Merrimack Valley' },
+  { label: '20+ years serving the Northshore' },
 ];
 
 /** `imageId` is the CDN suffix after `photo-` on images.unsplash.com (verified, non-Plus). */
