@@ -75,6 +75,15 @@
   /* Shadows — used sparingly, only for interactive lift */
   --shadow-lift: 0 8px 24px rgba(0, 0, 0, 0.35);
   --shadow-header: 0 1px 0 var(--hairline), 0 12px 32px rgba(0, 0, 0, 0.28);
+  --shadow-surface:
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 2px 6px rgba(0, 0, 0, 0.18),
+    0 12px 28px rgba(0, 0, 0, 0.2);
+  --shadow-surface-hover:
+    0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 4px 10px rgba(0, 0, 0, 0.2),
+    0 16px 32px rgba(0, 0, 0, 0.24);
+  --image-outline: rgba(255, 255, 255, 0.1);
 
   /* Motion */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -105,6 +114,8 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -126,6 +137,8 @@ body {
   min-height: 100svh;
   background: var(--surface-0);
   color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 #root {
@@ -151,6 +164,7 @@ p {
   margin: 0;
   line-height: var(--lh-body);
   letter-spacing: 0.01em;
+  text-wrap: pretty;
 }
 
 a {
@@ -170,6 +184,8 @@ ul {
 img {
   max-width: 100%;
   display: block;
+  outline: 1px solid var(--image-outline);
+  outline-offset: -1px;
 }
 
 :focus-visible {
@@ -181,15 +197,19 @@ img {
    IntersectionObserver support and reduced-motion isn't requested. */
 .reveal-armed {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(12px);
+  filter: blur(4px);
+  will-change: transform, opacity, filter;
 }
 
 .reveal-armed.reveal-in {
   opacity: 1;
   transform: none;
-  transition:
-    opacity var(--duration-slow) var(--ease-out-expo),
-    transform var(--duration-slow) var(--ease-out-expo);
+  filter: blur(0);
+  transition-property: opacity, transform, filter;
+  transition-duration: var(--duration-slow);
+  transition-timing-function: var(--ease-out-expo);
+  transition-delay: var(--reveal-delay, 0ms);
 }
 
 /* Shared button primitives, reused by header, hero, and contact CTAs */
@@ -198,6 +218,7 @@ img {
   align-items: center;
   justify-content: center;
   gap: var(--space-2xs);
+  min-height: 40px;
   border: 1px solid transparent;
   border-radius: var(--radius-sm);
   padding: 0.9rem 1.75rem;
@@ -207,15 +228,19 @@ img {
   text-decoration: none;
   cursor: pointer;
   white-space: nowrap;
-  transition:
-    background-color var(--duration-fast) var(--ease-out-expo),
-    border-color var(--duration-fast) var(--ease-out-expo),
-    transform var(--duration-fast) var(--ease-out-expo),
-    box-shadow var(--duration-fast) var(--ease-out-expo);
+  transition-property: background-color, border-color, box-shadow, transform;
+  transition-duration: var(--duration-fast);
+  transition-timing-function: var(--ease-out-expo);
 }
 
 .btn:active {
-  transform: translateY(1px);
+  transform: scale(0.96);
+}
+
+.btn svg {
+  width: 1.125rem;
+  height: 1.125rem;
+  flex-shrink: 0;
 }
 
 .btn--primary {
@@ -235,13 +260,14 @@ img {
 
 .btn--ghost {
   background: transparent;
-  border-color: var(--hairline-strong);
+  border-color: transparent;
+  box-shadow: var(--shadow-surface);
   color: var(--ink-strong);
 }
 
 .btn--ghost:hover {
-  border-color: var(--sage);
   background: color-mix(in oklch, var(--sage) 10%, transparent);
+  box-shadow: var(--shadow-surface-hover);
 }
 
 .btn--sm {
