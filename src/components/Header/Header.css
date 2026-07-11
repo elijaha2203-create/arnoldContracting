@@ -141,7 +141,7 @@
   align-items: center;
   justify-content: center;
   transition-property: opacity, filter, transform;
-  transition-duration: 300ms;
+  transition-duration: var(--duration-icon-crossfade);
   transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
 }
 
@@ -197,9 +197,9 @@
   transform: translateY(-12px);
   filter: blur(4px);
   transition-property: max-height, padding, opacity, transform, filter, visibility;
-  transition-duration: 320ms, 220ms, 220ms, 220ms, 220ms, 0ms;
+  transition-duration: var(--duration-panel-slow), var(--duration-panel), var(--duration-panel), var(--duration-panel), var(--duration-panel), 0ms;
   transition-timing-function: var(--ease-out-expo);
-  transition-delay: 0ms, 0ms, 0ms, 0ms, 0ms, 220ms;
+  transition-delay: 0ms, 0ms, 0ms, 0ms, 0ms, var(--duration-panel);
 }
 
 .site-header__mobile.is-open {

@@ -90,6 +90,9 @@
   --duration-fast: 160ms;
   --duration-base: 280ms;
   --duration-slow: 480ms;
+  --duration-icon-crossfade: 300ms;
+  --duration-panel: 220ms;
+  --duration-panel-slow: 320ms;
 
   /* z-index scale */
   --z-base: 0;
@@ -104,8 +107,6 @@
   background: var(--surface-0);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 * {
@@ -137,8 +138,6 @@ body {
   min-height: 100svh;
   background: var(--surface-0);
   color: var(--ink);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 #root {
