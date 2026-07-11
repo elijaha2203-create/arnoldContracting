@@ -115,6 +115,7 @@
 
 html {
   scroll-behavior: smooth;
+  /* Cascades to all descendants; kept on html only to avoid duplication. */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

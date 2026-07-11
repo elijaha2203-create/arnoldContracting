@@ -196,6 +196,7 @@
   pointer-events: none;
   transform: translateY(-12px);
   filter: blur(4px);
+  /* transition-property order: max-height, padding, opacity, transform, filter, visibility */
   transition-property: max-height, padding, opacity, transform, filter, visibility;
   transition-duration: var(--duration-panel-slow), var(--duration-panel), var(--duration-panel), var(--duration-panel), var(--duration-panel), 0ms;
   transition-timing-function: var(--ease-out-expo);
