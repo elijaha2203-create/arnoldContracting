@@ -54,7 +54,14 @@ export function Header() {
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             onClick={() => setMenuOpen((open) => !open)}
           >
-            {menuOpen ? <CloseIcon /> : <MenuIcon />}
+            <span className="site-header__menu-icon">
+              <MenuIcon
+                className={`site-header__menu-icon-svg${menuOpen ? '' : ' is-visible'}`}
+              />
+              <CloseIcon
+                className={`site-header__menu-icon-svg${menuOpen ? ' is-visible' : ''}`}
+              />
+            </span>
           </button>
         </div>
       </div>
@@ -62,24 +69,26 @@ export function Header() {
       <div
         id="mobile-nav"
         className={`site-header__mobile${menuOpen ? ' is-open' : ''}`}
-        hidden={!menuOpen}
+        inert={!menuOpen}
       >
-        <ul>
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <a href={link.href} onClick={() => setMenuOpen(false)}>
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-        <a className="site-header__phone site-header__phone--mobile" href={business.phoneHref}>
-          <PhoneIcon className="site-header__phone-icon" />
-          <span>{business.phone}</span>
-        </a>
-        <a className="btn btn--primary" href="#contact" onClick={() => setMenuOpen(false)}>
-          Get a Free Quote
-        </a>
+        <div className="site-header__mobile-inner">
+          <ul>
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <a href={link.href} onClick={() => setMenuOpen(false)}>
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <a className="site-header__phone site-header__phone--mobile" href={business.phoneHref}>
+            <PhoneIcon className="site-header__phone-icon" />
+            <span>{business.phone}</span>
+          </a>
+          <a className="btn btn--primary" href="#contact" onClick={() => setMenuOpen(false)}>
+            Get a Free Quote
+          </a>
+        </div>
       </div>
     </header>
   );

@@ -50,6 +50,7 @@
   height: 100%;
   object-fit: cover;
   transition: transform var(--duration-slow) var(--ease-out-expo);
+  will-change: transform;
 }
 
 .gallery__item:hover .gallery__image {

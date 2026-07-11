@@ -4,12 +4,13 @@ import { useReveal } from '../../hooks/useReveal';
 import './TrustStrip.css';
 
 export function TrustStrip() {
-  const { ref, className } = useReveal<HTMLDivElement>();
+  const { ref: statsRef, className: statsClassName } = useReveal<HTMLUListElement>();
+  const { ref: credsRef, className: credsClassName } = useReveal<HTMLUListElement>();
 
   return (
     <section className="trust-strip" aria-label="Why homeowners choose us">
-      <div ref={ref} className={`trust-strip__inner ${className}`}>
-        <ul className="trust-strip__stats">
+      <div className="trust-strip__inner">
+        <ul ref={statsRef} className={`trust-strip__stats ${statsClassName}`}>
           {trustStats.map((stat) => (
             <li key={stat.label}>
               <span className="trust-strip__value">{stat.value}</span>
@@ -18,7 +19,7 @@ export function TrustStrip() {
           ))}
         </ul>
 
-        <ul className="trust-strip__credentials">
+        <ul ref={credsRef} className={`trust-strip__credentials ${credsClassName}`}>
           {credentials.map((item) => (
             <li key={item.label}>
               <CheckIcon className="trust-strip__check" />

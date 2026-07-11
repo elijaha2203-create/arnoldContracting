@@ -27,6 +27,18 @@
   gap: var(--space-md);
 }
 
+.testimonials__item.reveal-in:nth-child(2) {
+  transition-delay: 80ms;
+}
+
+.testimonials__item.reveal-in:nth-child(3) {
+  transition-delay: 160ms;
+}
+
+.testimonials__item.reveal-in:nth-child(4) {
+  transition-delay: 240ms;
+}
+
 .testimonials__mark {
   width: 28px;
   height: 28px;

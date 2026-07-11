@@ -45,6 +45,10 @@
   gap: var(--space-md) var(--space-xl);
 }
 
+.trust-strip__credentials.reveal-in {
+  transition-delay: 100ms;
+}
+
 .trust-strip__credentials li {
   display: flex;
   align-items: center;
