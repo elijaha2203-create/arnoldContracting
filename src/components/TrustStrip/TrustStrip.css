@@ -31,6 +31,7 @@
   font-weight: 900;
   color: var(--ink-strong);
   letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
 }
 
 .trust-strip__label {
@@ -59,4 +60,5 @@
   height: 18px;
   color: var(--sage);
   flex-shrink: 0;
+  transform: translateY(-0.5px);
 }

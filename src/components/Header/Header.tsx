@@ -48,13 +48,20 @@ export function Header() {
           </a>
           <button
             type="button"
-            className="site-header__menu-btn"
+            className={`site-header__menu-btn${menuOpen ? ' is-open' : ''}`}
             aria-expanded={menuOpen}
             aria-controls="mobile-nav"
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             onClick={() => setMenuOpen((open) => !open)}
           >
-            {menuOpen ? <CloseIcon /> : <MenuIcon />}
+            <span className="site-header__menu-icon-wrap" aria-hidden="true">
+              <span className="site-header__menu-icon site-header__menu-icon--close">
+                <CloseIcon />
+              </span>
+              <span className="site-header__menu-icon site-header__menu-icon--menu">
+                <MenuIcon />
+              </span>
+            </span>
           </button>
         </div>
       </div>
@@ -62,7 +69,7 @@ export function Header() {
       <div
         id="mobile-nav"
         className={`site-header__mobile${menuOpen ? ' is-open' : ''}`}
-        hidden={!menuOpen}
+        aria-hidden={!menuOpen}
       >
         <ul>
           {navLinks.map((link) => (

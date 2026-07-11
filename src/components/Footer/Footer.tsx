@@ -36,7 +36,9 @@ export function Footer() {
       <div className="site-footer__bottom">
         <p>{business.address}</p>
         <p>{business.license}</p>
-        <p>&copy; {new Date().getFullYear()} {business.name}. All rights reserved.</p>
+        <p>
+          &copy; <span className="site-footer__year">{new Date().getFullYear()}</span> {business.name}. All rights reserved.
+        </p>
       </div>
     </footer>
   );

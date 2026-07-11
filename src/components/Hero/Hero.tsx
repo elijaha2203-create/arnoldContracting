@@ -26,9 +26,9 @@ export function Hero() {
           holds it all together.
         </p>
         <div className="hero__actions">
-          <a className="btn btn--primary" href="#contact">
+          <a className="btn btn--primary hero__cta" href="#contact">
             Contact Now To Get a Free Quote
-            <ArrowRightIcon />
+            <ArrowRightIcon className="hero__cta-icon" />
           </a>
           <a className="btn btn--ghost" href={business.phoneHref}>
             Call {business.phone}
