@@ -8,8 +8,8 @@ export function Services() {
       <div className="services__inner">
         <SectionHead />
         <div className="services__categories">
-          {serviceCategories.map((category) => (
-            <ServiceCategory key={category.name} category={category} />
+          {serviceCategories.map((category, index) => (
+            <ServiceCategory key={category.name} category={category} index={index} />
           ))}
         </div>
       </div>
@@ -18,11 +18,22 @@ export function Services() {
 }
 
 function SectionHead() {
-  const { ref, className } = useReveal<HTMLDivElement>();
+  const { ref: titleRef, className: titleClassName, style: titleStyle } = useReveal<HTMLHeadingElement>({ delay: 0 });
+  const { ref: introRef, className: introClassName, style: introStyle } = useReveal<HTMLParagraphElement>({ delay: 100 });
   return (
-    <div ref={ref} className={`services__head ${className}`}>
-      <h2 className="services__title">What we build and fix</h2>
-      <p className="services__intro">
+    <div className="services__head">
+      <h2
+        ref={titleRef}
+        className={`services__title ${titleClassName}`}
+        style={titleStyle}
+      >
+        What we build and fix
+      </h2>
+      <p
+        ref={introRef}
+        className={`services__intro ${introClassName}`}
+        style={introStyle}
+      >
         From a single room to the whole house &mdash; every job gets the same
         finish-carpentry attention to detail.
       </p>
@@ -32,12 +43,14 @@ function SectionHead() {
 
 function ServiceCategory({
   category,
+  index,
 }: {
   category: (typeof serviceCategories)[number];
+  index: number;
 }) {
-  const { ref, className } = useReveal<HTMLDivElement>();
+  const { ref, className, style } = useReveal<HTMLDivElement>({ delay: index * 100 });
   return (
-    <div ref={ref} className={`service-category ${className}`}>
+    <div ref={ref} className={`service-category ${className}`} style={style}>
       <div className="service-category__intro">
         <h3 className="service-category__name">{category.name}</h3>
         <p className="service-category__blurb">{category.blurb}</p>

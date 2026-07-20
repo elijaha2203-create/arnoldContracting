@@ -3,22 +3,33 @@ import { useReveal } from '../../hooks/useReveal';
 import './Gallery.css';
 
 export function Gallery() {
-  const { ref, className } = useReveal<HTMLDivElement>();
+  const { ref: titleRef, className: titleClassName, style: titleStyle } = useReveal<HTMLHeadingElement>({ delay: 0 });
+  const { ref: introRef, className: introClassName, style: introStyle } = useReveal<HTMLParagraphElement>({ delay: 100 });
 
   return (
     <section className="gallery" id="gallery">
       <div className="gallery__inner">
-        <div ref={ref} className={`gallery__head ${className}`}>
-          <h2 className="gallery__title">Recent work</h2>
-          <p className="gallery__intro">
-            A sample of finished projects across the Merrimack Valley &mdash;
+        <div className="gallery__head">
+          <h2
+            ref={titleRef}
+            className={`gallery__title ${titleClassName}`}
+            style={titleStyle}
+          >
+            Recent work
+          </h2>
+          <p
+            ref={introRef}
+            className={`gallery__intro ${introClassName}`}
+            style={introStyle}
+          >
+            A sample of finished projects across Essex County, MA &mdash;
             more added as each job wraps.
           </p>
         </div>
 
         <ul className="gallery__grid">
           {galleryProjects.map((project, index) => (
-            <GalleryItem key={project.id} project={project} featured={index === 0} />
+            <GalleryItem key={project.id} project={project} featured={index === 0} delay={index * 100} />
           ))}
         </ul>
       </div>
@@ -29,15 +40,18 @@ export function Gallery() {
 function GalleryItem({
   project,
   featured,
+  delay,
 }: {
   project: (typeof galleryProjects)[number];
   featured: boolean;
+  delay: number;
 }) {
-  const { ref, className } = useReveal<HTMLLIElement>();
+  const { ref, className, style } = useReveal<HTMLLIElement>({ delay });
   return (
     <li
       ref={ref}
       className={`gallery__item ${className}${featured ? ' gallery__item--featured' : ''}`}
+      style={style}
     >
       <img
         src={unsplashUrl(project.imageId, featured ? 1600 : 900)}

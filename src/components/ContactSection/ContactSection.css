@@ -40,23 +40,32 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-2xs);
+  min-height: 40px;
+  padding: 0.35rem 0;
   text-decoration: none;
   color: var(--ink-strong);
   font-weight: 700;
   font-size: 1.1rem;
   width: fit-content;
-  transition: color var(--duration-fast) var(--ease-out-expo);
+  transition-property: color, transform;
+  transition-duration: var(--duration-fast);
+  transition-timing-function: var(--ease-out-expo);
 }
 
 .contact__method:hover {
   color: var(--sage);
 }
 
+.contact__method:active {
+  transform: scale(0.96);
+}
+
 .contact__method-icon {
   width: 20px;
   height: 20px;
-  color: var(--brand-hover);
+  color: var(--sage);
   flex-shrink: 0;
+  transform: translateY(-0.5px);
 }
 
 .contact__license {
@@ -67,8 +76,9 @@
 
 .contact__form {
   background: var(--surface-2-raised);
-  border: 1px solid var(--hairline);
+  border: 1px solid transparent;
   border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-surface);
   padding: var(--space-xl);
   display: flex;
   flex-direction: column;
@@ -103,7 +113,9 @@
   border-radius: var(--radius-sm);
   padding: 0.7rem 0.9rem;
   resize: vertical;
-  transition: border-color var(--duration-fast) var(--ease-out-expo);
+  transition-property: border-color, box-shadow, background-color;
+  transition-duration: var(--duration-fast);
+  transition-timing-function: var(--ease-out-expo);
 }
 
 .contact__field input::placeholder,
@@ -115,6 +127,7 @@
 .contact__field select:focus,
 .contact__field textarea:focus {
   border-color: var(--sage);
+  box-shadow: 0 0 0 1px color-mix(in oklch, var(--sage) 70%, transparent);
 }
 
 .contact__field input[aria-invalid='true'],
@@ -153,7 +166,7 @@
 .contact__success-icon {
   width: 28px;
   height: 28px;
-  color: var(--brand-hover);
+  color: var(--sage);
   flex-shrink: 0;
   margin-top: 0.15rem;
 }

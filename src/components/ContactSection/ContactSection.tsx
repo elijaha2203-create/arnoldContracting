@@ -33,7 +33,8 @@ const projectTypes = [
 ];
 
 export function ContactSection() {
-  const { ref, className } = useReveal<HTMLDivElement>();
+  const { ref: introRef, className: introClassName, style: introStyle } = useReveal<HTMLDivElement>({ delay: 0 });
+  const { ref: formRef, className: formClassName, style: formStyle } = useReveal<HTMLFormElement>({ delay: 120 });
   const [values, setValues] = useState<FormValues>(initialValues);
   const [errors, setErrors] = useState<Partial<Record<keyof FormValues, string>>>({});
   const [status, setStatus] = useState<FormStatus>('idle');
@@ -76,8 +77,12 @@ export function ContactSection() {
 
   return (
     <section className="contact" id="contact">
-      <div ref={ref} className={`contact__inner ${className}`}>
-        <div className="contact__intro">
+      <div className="contact__inner">
+        <div
+          ref={introRef}
+          className={`contact__intro ${introClassName}`}
+          style={introStyle}
+        >
           <h2 className="contact__title">Contact Now To Get a Free Quote</h2>
           <p className="contact__subtitle">
             Tell us about the project and we'll get back to you within one
@@ -103,7 +108,13 @@ export function ContactSection() {
           <p className="contact__license">{business.license}</p>
         </div>
 
-        <form className="contact__form" noValidate onSubmit={handleSubmit}>
+        <form
+          ref={formRef}
+          className={`contact__form ${formClassName}`}
+          style={formStyle}
+          noValidate
+          onSubmit={handleSubmit}
+        >
           {status === 'success' ? (
             <div className="contact__success" role="status">
               <CheckIcon className="contact__success-icon" />

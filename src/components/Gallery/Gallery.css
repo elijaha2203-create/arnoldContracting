@@ -36,6 +36,10 @@
   overflow: hidden;
   aspect-ratio: 4 / 5;
   isolation: isolate;
+  box-shadow: var(--shadow-surface);
+  transition-property: box-shadow;
+  transition-duration: var(--duration-fast);
+  transition-timing-function: var(--ease-out-expo);
 }
 
 .gallery__item--featured {
@@ -49,8 +53,13 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform var(--duration-slow) var(--ease-out-expo);
-  will-change: transform;
+  transition-property: transform;
+  transition-duration: var(--duration-slow);
+  transition-timing-function: var(--ease-out-expo);
+}
+
+.gallery__item:hover {
+  box-shadow: var(--shadow-surface-hover);
 }
 
 .gallery__item:hover .gallery__image {
