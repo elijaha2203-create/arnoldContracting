@@ -69,7 +69,7 @@
 .hero__subhead {
   max-width: 58ch;
   font-size: clamp(1rem, 1.4vw, 1.2rem);
-  color: var(--ink);
+  color: var(--paper);
   animation: hero-enter 640ms var(--ease-out-expo) 100ms both;
   will-change: transform, opacity, filter;
 }

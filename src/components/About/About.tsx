@@ -1,4 +1,4 @@
-import { business, unsplashUrl } from '../../data/content';
+import { business } from '../../data/content';
 import { useReveal } from '../../hooks/useReveal';
 import './About.css';
 
@@ -15,7 +15,6 @@ export function About() {
     className: secondParagraphClassName,
     style: secondParagraphStyle,
   } = useReveal<HTMLParagraphElement>({ delay: 300 });
-
   return (
     <section className="about" id="about">
       <div className="about__inner">
@@ -25,7 +24,7 @@ export function About() {
           style={mediaStyle}
         >
           <img
-            src={unsplashUrl('1769353086138-19ee65291a04', 1200)}
+            src="/images/homepage.jpg"
             alt="Carpenter working with wood inside the shop"
             loading="lazy"
             className="about__image"

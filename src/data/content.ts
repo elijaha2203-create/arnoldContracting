@@ -2,10 +2,10 @@ export const business = {
   name: 'Arnold Contracting',
   tagline: 'Family-owned craftsmanship, built to last.',
   // TODO: replace with the real phone number, email, and license number before launch.
-  phone: '(508) 555-0173',
-  phoneHref: 'tel:+15085550173',
-  email: 'info@arnoldcontracting.com',
-  emailHref: 'mailto:info@arnoldcontracting.com',
+  phone: '(978) 290-7566',
+  phoneHref: 'tel:+19782907566',
+  email: 'earnweld@gmail.com',
+  emailHref: 'mailto:earnweld@gmail.com',
   address: 'Serving the Northshore',
   license: 'MA HIC #000000 · Licensed & Insured',
 };
@@ -108,35 +108,35 @@ export type GalleryProject = {
   title: string;
   location: string;
   category: string;
-  imageId: string;
+  image: string;
   alt: string;
 };
 
-// Placeholder project set — sourced stock imagery standing in for real job-site
-// photos. Swap `imageId` + `alt` for real project photography as it's supplied.
+// Placeholder project set. Add your own photo files to /public/images and
+// update the `image` path below for each project as photos are supplied.
 export const galleryProjects: GalleryProject[] = [
   {
     id: 'kitchen-andover',
     title: 'Kitchen Remodel',
     location: 'Essex, MA',
     category: 'Remodeling',
-    imageId: '1618832515490-e181c4794a45',
+    image: '/images/kitchen-remodel.jpg',
     alt: 'Custom kitchen cabinetry and window trim, finished in place',
   },
   {
     id: 'bath-north-andover',
-    title: 'Bathroom Remodel',
+    title: 'Roofing',
     location: 'Beverly, MA',
-    category: 'Remodeling',
-    imageId: '1638799869566-b17fa794c4de',
-    alt: 'Bathroom remodel with a walk-in shower beside a freestanding tub',
+    category: 'Exteriors',
+    image: '/images/roofing.jpg',
+    alt: 'Roof installation on a residential home',
   },
   {
-    id: 'deck-methuen',
+    id: 'deck-hamilton',
     title: 'Custom Deck & Outdoor Living',
-    location: 'Gloucester, MA',
+    location: 'Hamilton, MA',
     category: 'Exteriors',
-    imageId: '1574120583586-de8847ae992c',
+    image: '/images/deck-hamilton.jpg',
     alt: 'Wooden deck built off a home\u2019s rear glass door',
   },
   {
@@ -144,15 +144,15 @@ export const galleryProjects: GalleryProject[] = [
     title: 'Whole-Home Addition',
     location: 'Manchester, MA',
     category: 'Remodeling',
-    imageId: '1676802037786-3697d60497ae',
+    image: '/images/addition.jpg',
     alt: 'Wood framing underway on a home addition construction site',
   },
   {
     id: 'stairs-haverhill',
-    title: 'Custom Staircase & Millwork',
+    title: 'Custom Built-Ins & Cabinetry',
     location: 'Essex, MA',
     category: 'Carpentry',
-    imageId: '1656733911006-fcad49fa0d52',
+    image: '/images/builtin.jpg',
     alt: 'Hand-built wooden staircase inside a timber-framed home',
   },
   {
@@ -160,7 +160,7 @@ export const galleryProjects: GalleryProject[] = [
     title: 'Siding & Facade Replacement',
     location: 'Hamilton, MA',
     category: 'Exteriors',
-    imageId: '1604177420528-44bb3e1dcd7b',
+    image: '/images/siding3.jpeg',
     alt: 'Close-up of a home\u2019s freshly finished wood siding',
   },
 ];
@@ -199,8 +199,3 @@ export const credentials = [
   { label: 'Licensed & fully insured' },
   { label: '20+ years serving the Northshore' },
 ];
-
-/** `imageId` is the CDN suffix after `photo-` on images.unsplash.com (verified, non-Plus). */
-export function unsplashUrl(imageId: string, width = 1600): string {
-  return `https://images.unsplash.com/photo-${imageId}?ixlib=rb-4.1.0&q=80&fm=jpg&crop=entropy&cs=srgb&w=${width}`;
-}

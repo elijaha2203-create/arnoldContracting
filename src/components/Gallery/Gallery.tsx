@@ -1,11 +1,10 @@
-import { galleryProjects, unsplashUrl } from '../../data/content';
+import { galleryProjects } from '../../data/content';
 import { useReveal } from '../../hooks/useReveal';
 import './Gallery.css';
 
 export function Gallery() {
   const { ref: titleRef, className: titleClassName, style: titleStyle } = useReveal<HTMLHeadingElement>({ delay: 0 });
   const { ref: introRef, className: introClassName, style: introStyle } = useReveal<HTMLParagraphElement>({ delay: 100 });
-
   return (
     <section className="gallery" id="gallery">
       <div className="gallery__inner">
@@ -26,7 +25,6 @@ export function Gallery() {
             more added as each job wraps.
           </p>
         </div>
-
         <ul className="gallery__grid">
           {galleryProjects.map((project, index) => (
             <GalleryItem key={project.id} project={project} featured={index === 0} delay={index * 100} />
@@ -54,7 +52,7 @@ function GalleryItem({
       style={style}
     >
       <img
-        src={unsplashUrl(project.imageId, featured ? 1600 : 900)}
+        src={project.image}
         alt={project.alt}
         loading="lazy"
         className="gallery__image"

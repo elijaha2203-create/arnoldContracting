@@ -21,7 +21,7 @@
 .services__intro {
   margin-top: var(--space-sm);
   font-size: 1.1rem;
-  color: var(--ink);
+  color: var(--paper);
   max-width: 48ch;
 }
 
@@ -52,7 +52,7 @@
 }
 
 .service-category__blurb {
-  color: var(--ink-dim);
+  color: var(--paper);
   max-width: 36ch;
 }
 
@@ -72,13 +72,13 @@
 
 .service-category__service-name {
   font-weight: 700;
-  color: var(--ink-strong);
+  color: var(--paper);
   font-size: 1.02rem;
 }
 
 .service-category__service-desc {
   font-size: 0.92rem;
-  color: var(--ink-dim);
+  color: var(--paper);
   line-height: 1.5;
 }
 

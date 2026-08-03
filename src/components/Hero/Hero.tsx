@@ -1,4 +1,4 @@
-import { business, unsplashUrl } from '../../data/content';
+import { business } from '../../data/content';
 import { ArrowRightIcon } from '../icons';
 import './Hero.css';
 
@@ -7,14 +7,13 @@ export function Hero() {
     <section className="hero" id="top">
       <div className="hero__media">
         <img
-          src={unsplashUrl('1779031242509-af360178ebb3', 1800)}
+          src="/images/homepage.jpg"
           alt="Carpenter's hands guiding a board through a table saw, close up"
           className="hero__image"
           fetchPriority="high"
         />
         <div className="hero__scrim" aria-hidden="true" />
       </div>
-
       <div className="hero__content">
         <h1 className="hero__headline">
           Craftsmanship your home deserves, from a crew that treats it like our own.
