@@ -11,7 +11,7 @@ description: Family-owned craftsmanship, proven in the gallery, not the pitch.
 
 **Creative North Star: "The Workshop at Dusk"**
 
-The palette lives in the register of a woodshop after hours: near-black charcoal, deep navy shadow, and forest green carrying the weight of the brand rather than sitting on top of it as a thin accent stripe. This is a Committed color strategy — the dark, foresty palette isn't decoration on a white page, it *is* the surface, the way a workshop's materials (steel, dark wood, patina) are the room's actual color rather than a coat of paint. Sage green is the one warm-light note, reserved for moments that need to breathe (body text on dark, a highlighted stat, a hover state).
+The palette lives in the register of a woodshop after hours: deep slate navy and forest green carrying the weight of the brand rather than sitting on top of it as a thin accent stripe. This is a Committed color strategy — the dark, foresty palette isn't decoration on a white page, it *is* the surface, the way a workshop's materials (steel, dark wood, patina) are the room's actual color rather than a coat of paint. A muted barn red is the one warm note, reserved strictly for the primary call-to-action so it never dilutes into decoration. All text is off-white/white for maximum legibility against the dark surfaces.
 
 The site explicitly rejects the generic-contractor-template look: no neon, no gradients, no corporate SaaS gloss, no overly flashy motion, no overwhelming front page. Typography carries the authority instead — bold, high-contrast, single-family sans, in the spirit of Kontix and Massachusetts Woodworks/Bolt Woodworks: confident headlines, real project photography doing the selling, and a simple, easy-to-scan navigation.
 
@@ -24,22 +24,23 @@ The site explicitly rejects the generic-contractor-template look: no neon, no gr
 
 ## 2. Colors
 
-A dark, committed palette: charcoal and navy carry the base surface, forest green carries brand identity across a real portion of the page (not a thin 10% accent), and sage is the single light, breathable note.
+A dark, committed palette: deep slate navy carries the base surface, forest green carries brand identity across a real portion of the page (not a thin 10% accent), muted barn red is reserved strictly for the primary CTA, and all text is off-white/white.
 
 ### Primary
-- **Workshop Charcoal** (#070809): the dominant background — near-black, not pure black, so it holds warmth rather than reading as a tech-dark-mode UI.
-- **Forest Deep** (#0f3d2e): the brand's committed color — used across large surfaces (section backgrounds, header/footer, CTA blocks), not as a thin accent.
-- **Forest Mid** (#1f6f4a): the active/interactive shade of the brand green — buttons, links, hover states, icons.
+- **Slate Navy** (#0e1f2b): the dominant background — deep, near-black navy that holds the page without reading as a tech-dark-mode UI.
+- **Forest Green** (#264d3b): the brand's committed surface color — used across large surfaces (contact section, section backgrounds, header/footer), not as a thin accent.
+- **Barn Red** (#8c2f2f): the CTA accent — used sparingly, exclusively for the primary call-to-action button ("Contact Now To Get a Free Quote") so it retains its urgency and never dilutes into decoration.
 
 ### Secondary
-- **Dusk Navy** (#0d1b2a): an alternate dark surface for section separation and depth, sitting between Charcoal and Forest without competing with either.
+- **Navy Raised** (derived, `color-mix(in oklch, var(--charcoal) 88%, white 12%)`): an alternate dark surface for section separation and depth, sitting between Slate Navy and Forest Green without competing with either.
+- **Forest Bright** (derived, `color-mix(in oklch, var(--forest-deep) 55%, var(--paper) 32%)`): a lighter tint of Forest Green used for icons, focus rings, and hover tints — the one breathing accent that isn't the CTA red.
 
 ### Neutral
-- **Sage Mist** (#a3c9a8): body text and secondary UI on dark surfaces, and the one light accent for stats/highlights. Verify ≥4.5:1 against Charcoal and Forest Deep before using at body-text sizes; lighten a touch further if it falls short.
-- **Paper** (`[to be resolved during implementation]`): a true off-white or very-low-chroma light neutral for any light-surface sections (e.g. a light contact/quote form panel) — chroma near 0 or tinted toward the forest hue, never a generic warm cream default.
+- **Paper** (#f2efe9): all body text, headings, and light-panel text. Every text color in the system resolves to this off-white (or pure white for emphasis) — no tinted or muted text colors. Verify ≥4.5:1 against Slate Navy and Forest Green before shipping any new surface (both pass comfortably given the dark base).
 
 ### Named Rules
-**The Committed, Not Corporate Rule.** Forest green and charcoal carry 30–60% of any given screen as real surface, not a 10% accent dropped onto a white template. If a section reads like a light SaaS page with a green button, the palette has drifted from the brief.
+**The Committed, Not Corporate Rule.** Forest green and slate navy carry 30–60% of any given screen as real surface, not a 10% accent dropped onto a white template. If a section reads like a light SaaS page with a green button, the palette has drifted from the brief.
+**The Sparing Red Rule.** Barn red exists for one job: the primary CTA. It never appears as a hover tint, icon color, or decorative accent — that dilutes its urgency.
 
 ## 3. Typography
 
@@ -71,11 +72,11 @@ Flat by default, consistent with a Responsive motion energy: this system does no
 
 ### Buttons
 - **Shape:** small radius, not sharp rectangles and not pill-shaped — a restrained rounded rectangle.
-- **Primary:** Forest Mid background, Charcoal or off-white text depending on contrast check, generous horizontal padding to read as a real call-to-action ("Contact Now To Get a Free Quote").
-- **Hover / Focus:** darken toward Forest Deep or lighten toward Sage Mist (pick one direction and keep it consistent), plus the Interactive Lift shadow. Reduced-motion users get an instant color swap, no transform.
+- **Primary:** Barn Red background, white text, generous horizontal padding to read as a real call-to-action ("Contact Now To Get a Free Quote").
+- **Hover / Focus:** darken/lighten the Barn Red itself for hover/active (never swap to green — red stays red), plus the Interactive Lift shadow. Reduced-motion users get an instant color swap, no transform.
 
 ### Cards / Containers
-- Used sparingly, only where they're the true best affordance (e.g. a testimonial or a service summary) — not stacked into an identical repeating grid everywhere. Dusk Navy or Forest Deep surface on Charcoal background for separation; no nested cards.
+- Used sparingly, only where they're the true best affordance (e.g. a testimonial or a service summary) — not stacked into an identical repeating grid everywhere. Navy Raised or Forest Green surface on Slate Navy background for separation; no nested cards.
 
 ### Navigation
 - Simple, easy-to-scan menu per the brief: primary nav items in Label type, phone number/CTA visible in the header at all times, mobile nav collapses to a single clear affordance (not hidden behind ambiguous icons only).
@@ -83,11 +84,12 @@ Flat by default, consistent with a Responsive motion energy: this system does no
 ## 6. Do's and Don'ts
 
 ### Do:
-- **Do** let Forest Deep/Forest Mid and Charcoal carry real surface area (30–60%), per the Committed strategy.
+- **Do** let Forest Green and Slate Navy carry real surface area (30–60%), per the Committed strategy.
 - **Do** lead with real project photography and galleries as the primary proof mechanism.
 - **Do** keep the front page uncluttered — only as many sections as a homeowner needs to decide to call.
 - **Do** keep the phone number and "Contact Now To Get a Free Quote" CTA visible throughout the scroll.
-- **Do** verify Sage Mist (or any body text color) hits ≥4.5:1 contrast against whatever dark surface it sits on.
+- **Do** keep all text off-white/white and verify it hits ≥4.5:1 contrast against whatever dark surface it sits on.
+- **Do** keep Barn Red reserved for the primary CTA only — never as a hover tint, icon color, or decorative accent.
 
 ### Don't:
 - **Don't** use a generic cheap-looking contractor template layout.

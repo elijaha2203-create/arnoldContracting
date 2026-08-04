@@ -7,44 +7,43 @@
 
 /* ---------------------------------------------------------------
    Design tokens — Arnold Contracting
-   Canonical hex values come from DESIGN.md. Derived tones use CSS
-   relative-color syntax (OKLCH) so the palette stays perceptually
-   even without redefining the canonical brand hex values.
+   Canonical hex values come from DESIGN.md. Derived tones use
+   color-mix() in OKLCH so the palette stays perceptually even
+   without redefining the canonical brand hex values.
    --------------------------------------------------------------- */
 :root {
   color-scheme: dark;
 
   /* Canonical brand colors (DESIGN.md) */
-  --charcoal: #070809;
-  --navy: #0d1b2a;
-  --forest-deep: #0f3d2e;
-  --forest-mid: #1f6f4a;
-  --sage: #a3c9a8;
-  --paper: oklch(97% 0.006 150);
+  --charcoal: #0e1f2b;
+  --forest-deep: #264d3b;
+  --barn-red: #8c2f2f;
+  --paper: #f2efe9;
 
-  /* Derived tones in OKLCH, precomputed for broad browser support
-     (avoids relying on relative-color `from` syntax) */
-  --charcoal-raised: oklch(11% 0.006 250);
-  --navy-raised: oklch(20% 0.035 240);
-  --forest-deep-raised: oklch(34% 0.07 155);
-  --forest-mid-hover: oklch(43% 0.095 155);
-  --forest-mid-active: oklch(40% 0.095 155);
-  --sage-dim: oklch(73% 0.05 145);
-  --hairline: oklch(82% 0.06 145 / 16%);
-  --hairline-strong: oklch(24.984% 0.07508 142.932 / 0.3);
+  /* Derived tones, mixed in OKLCH from the canonical colors above */
+  --navy: color-mix(in oklch, var(--charcoal) 88%, white 12%);
+  --forest-mid: color-mix(in oklch, var(--forest-deep) 55%, var(--paper) 32%);
+  --sage: var(--forest-mid);
+  --charcoal-raised: color-mix(in oklch, var(--charcoal) 90%, white 10%);
+  --navy-raised: color-mix(in oklch, var(--navy) 90%, white 10%);
+  --forest-deep-raised: color-mix(in oklch, var(--forest-deep) 88%, white 12%);
+  --barn-red-hover: color-mix(in oklch, var(--barn-red) 88%, white 12%);
+  --barn-red-active: color-mix(in oklch, var(--barn-red) 82%, black 18%);
+  --hairline: color-mix(in oklch, var(--paper) 16%, transparent);
+  --hairline-strong: color-mix(in oklch, var(--paper) 30%, transparent);
 
   /* Semantic roles */
   --surface-0: var(--charcoal);
   --surface-1: var(--navy);
   --surface-2: var(--forest-deep);
   --surface-2-raised: var(--forest-deep-raised);
-  --ink: var(--sage);
-  --ink-dim: var(--sage-dim);
-  --ink-strong: #f4f8f4;
-  --brand: var(--forest-mid);
-  --brand-hover: var(--forest-mid-hover);
-  --brand-active: var(--forest-mid-active);
-  --on-brand: #f4f8f4;
+  --ink: var(--paper);
+  --ink-dim: color-mix(in oklch, var(--paper) 75%, transparent);
+  --ink-strong: #ffffff;
+  --brand: var(--barn-red);
+  --brand-hover: var(--barn-red-hover);
+  --brand-active: var(--barn-red-active);
+  --on-brand: #ffffff;
   --danger: oklch(62% 0.19 25);
   --success: var(--forest-mid);
 
@@ -170,6 +169,14 @@ p {
 
 a {
   color: inherit;
+}
+
+/* Deliberate pause between two text-dense sections; sits on the page's base surface. */
+.section-divider {
+  height: 1px;
+  max-width: 6rem;
+  margin: 0 auto;
+  background: var(--hairline);
 }
 
 button {

@@ -24,7 +24,7 @@ export function Header() {
   return (
     <header className={`site-header${scrolled ? ' is-scrolled' : ''}`}>
       <div className="site-header__bar">
-        <a href="#top" className="site-header__brand">
+        <a href="/" className="site-header__brand">
           {business.name}
         </a>
 
@@ -43,7 +43,7 @@ export function Header() {
             <PhoneIcon className="site-header__phone-icon" />
             <span>{business.phone}</span>
           </a>
-          <a className="btn btn--primary btn--sm" href="#contact">
+          <a className="btn btn--primary btn--sm" href="/#contact">
             Get a Free Quote
           </a>
           <button
@@ -85,7 +85,7 @@ export function Header() {
             <PhoneIcon className="site-header__phone-icon" />
             <span>{business.phone}</span>
           </a>
-          <a className="btn btn--primary" href="#contact" onClick={() => setMenuOpen(false)}>
+          <a className="btn btn--primary" href="/#contact" onClick={() => setMenuOpen(false)}>
             Get a Free Quote
           </a>
         </div>

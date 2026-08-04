@@ -1,6 +1,6 @@
 .contact {
   background: var(--surface-2);
-  padding-block: var(--space-4xl);
+  padding-block: var(--space-3xl);
 }
 
 .contact__inner {
@@ -63,7 +63,7 @@
 .contact__method-icon {
   width: 20px;
   height: 20px;
-  color: var(--sage);
+  color: var(--ink-strong);
   flex-shrink: 0;
   transform: translateY(-0.5px);
 }
@@ -75,7 +75,7 @@
 }
 
 .contact__form {
-  background: var(--surface-2-raised);
+  background: #333333;
   border: 1px solid transparent;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-surface);
@@ -180,6 +180,17 @@
 .contact__success-body {
   margin-top: 0.3rem;
   color: var(--ink);
+}
+
+.contact__success-link {
+  color: var(--ink-strong);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 700;
+}
+
+.contact__success-link:hover {
+  color: var(--sage);
 }
 
 @media (min-width: 900px) {

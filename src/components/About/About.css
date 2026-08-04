@@ -1,6 +1,6 @@
 .about {
   background: var(--surface-1);
-  padding-block: var(--space-4xl);
+  padding-block: var(--space-2xl);
 }
 
 .about__inner {

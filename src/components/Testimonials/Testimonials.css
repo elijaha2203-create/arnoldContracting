@@ -1,6 +1,6 @@
 .testimonials {
   background: var(--surface-0);
-  padding-block: var(--space-4xl);
+  padding-block: var(--space-3xl);
 }
 
 .testimonials__inner {

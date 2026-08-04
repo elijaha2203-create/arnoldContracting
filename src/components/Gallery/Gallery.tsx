@@ -30,6 +30,9 @@ export function Gallery() {
             <GalleryItem key={project.id} project={project} featured={index === 0} delay={index * 100} />
           ))}
         </ul>
+        <a href="/gallery" className="gallery__view-all">
+          View the full gallery &rarr;
+        </a>
       </div>
     </section>
   );

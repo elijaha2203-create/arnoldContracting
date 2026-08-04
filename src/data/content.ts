@@ -1,7 +1,7 @@
 export const business = {
   name: 'Arnold Contracting',
   tagline: 'Family-owned craftsmanship, built to last.',
-  // TODO: replace with the real phone number, email, and license number before launch.
+  // LAUNCH TODO: replace with the real phone number, email, and license number before launch.
   phone: '(978) 290-7566',
   phoneHref: 'tel:+19782907566',
   email: 'earnweld@gmail.com',
@@ -11,14 +11,14 @@ export const business = {
 };
 
 export const navLinks = [
-  { label: 'Services', href: '#services' },
-  { label: 'Gallery', href: '#gallery' },
-  { label: 'About', href: '#about' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Services', href: '/#services' },
+  { label: 'Gallery', href: '/gallery' },
+  { label: 'About', href: '/#about' },
+  { label: 'Contact', href: '/#contact' },
 ];
 
-// Trust-strip stats. Numbers are illustrative placeholders — swap for the
-// real figures (years in business, completed project count) before launch.
+// LAUNCH TODO: illustrative placeholders — swap for the real figures (years
+// in business, completed project count) before launch.
 export const trustStats = [
   { value: '20+', label: 'years in business' },
   { value: '350+', label: 'projects completed' },
@@ -92,12 +92,9 @@ export const serviceCategories: ServiceCategory[] = [
         description: 'Staircase rebuilds and railings, framed and finished by hand.',
       },
       {
-        name: 'Drywall',
-        description: 'Hanging, taping, and finishing for a wall you would never guess was patched.',
-      },
-      {
-        name: 'Interior Painting',
-        description: 'Clean lines and even coats',
+        name: 'Drywall & Interior Painting',
+        description:
+          'Hanging, taping, and finishing a wall you would never guess was patched, then a clean, even coat of paint to match.',
       },
     ],
   },
@@ -112,8 +109,9 @@ export type GalleryProject = {
   alt: string;
 };
 
-// Placeholder project set. Add your own photo files to /public/images and
-// update the `image` path below for each project as photos are supplied.
+// LAUNCH TODO: placeholder project set. Add your own photo files to
+// /public/images and update the `image` path below for each project as
+// photos are supplied.
 export const galleryProjects: GalleryProject[] = [
   {
     id: 'kitchen-andover',
@@ -125,7 +123,7 @@ export const galleryProjects: GalleryProject[] = [
   },
   {
     id: 'bath-north-andover',
-    title: 'Roofing',
+    title: 'Roof Replacement',
     location: 'Beverly, MA',
     category: 'Exteriors',
     image: '/images/roofing.jpg',
@@ -165,14 +163,36 @@ export const galleryProjects: GalleryProject[] = [
   },
 ];
 
+// Additional real project photos, shown only on the full /gallery page so the
+// homepage teaser above stays a short, curated sample.
+export const extendedGalleryProjects: GalleryProject[] = [
+  ...galleryProjects,
+  {
+    id: 'siding-georgetown',
+    title: 'Siding Replacement \u2014 In Progress',
+    location: 'Georgetown, MA',
+    category: 'Exteriors',
+    image: '/images/siding1.jpeg',
+    alt: 'Crew member stripping old siding down to the sheathing during a facade replacement',
+  },
+  {
+    id: 'siding-rowley',
+    title: 'Exterior Weatherproofing',
+    location: 'Rowley, MA',
+    category: 'Exteriors',
+    image: '/images/siding2.jpeg',
+    alt: 'Ice-and-water shield membrane and new shake siding being installed on a home exterior',
+  },
+];
+
 export type Testimonial = {
   quote: string;
   name: string;
   location: string;
 };
 
-// Placeholder quotes standing in for real client testimonials. Replace with
-// the actual testimonials on hand before launch.
+// LAUNCH TODO: placeholder quotes standing in for real client testimonials.
+// Replace with the actual testimonials on hand before launch.
 export const testimonials: Testimonial[] = [
   {
     quote:

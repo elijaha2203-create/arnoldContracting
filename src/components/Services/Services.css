@@ -1,6 +1,6 @@
 .services {
   background: var(--surface-0);
-  padding-block: var(--space-4xl);
+  padding-block: var(--space-3xl);
 }
 
 .services__inner {
@@ -11,7 +11,7 @@
 
 .services__head {
   max-width: 42rem;
-  margin-bottom: var(--space-3xl);
+  margin-bottom: var(--space-xl);
 }
 
 .services__title {
@@ -39,6 +39,10 @@
 
 .service-category + .service-category {
   border-top: 1px solid var(--hairline);
+}
+
+.service-category:first-child {
+  padding-top: 0;
 }
 
 .service-category__intro {

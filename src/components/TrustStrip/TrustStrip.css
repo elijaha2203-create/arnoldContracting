@@ -62,7 +62,7 @@
 .trust-strip__check {
   width: 18px;
   height: 18px;
-  color: var(--sage);
+  color: #6b6b6b;
   flex-shrink: 0;
   transform: translateY(-0.5px);
 }

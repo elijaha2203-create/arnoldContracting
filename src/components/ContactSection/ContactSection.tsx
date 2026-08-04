@@ -4,7 +4,7 @@ import { PhoneIcon, MailIcon, CheckIcon } from '../icons';
 import { useReveal } from '../../hooks/useReveal';
 import './ContactSection.css';
 
-type FormStatus = 'idle' | 'sending' | 'success' | 'error';
+type FormStatus = 'idle' | 'sending' | 'success' | 'success-email' | 'error';
 
 type FormValues = {
   name: string;
@@ -23,14 +23,24 @@ const initialValues: FormValues = {
 };
 
 const projectTypes = [
-  'Whole-home renovation',
-  'Kitchen remodel',
-  'Bathroom remodel',
-  'Addition',
-  'Exterior (siding, windows, doors, decks)',
-  'Carpentry, cabinets & finish work',
+  'Remodeling & Renovation',
+  'Exteriors',
+  'Carpentry & Finish Work',
   'Something else',
 ];
+
+// No backend is configured until VITE_CONTACT_FORM_ENDPOINT is set (see .env).
+// Until then, submissions fall back to a pre-filled email instead of a fake
+// "success" that silently drops the request.
+function buildMailtoFallback(values: FormValues) {
+  const subject = encodeURIComponent(
+    `Quote request: ${values.projectType || 'General inquiry'}`,
+  );
+  const body = encodeURIComponent(
+    `Name: ${values.name}\nPhone: ${values.phone}\nEmail: ${values.email}\nProject type: ${values.projectType}\n\n${values.message}`,
+  );
+  return `mailto:${business.email}?subject=${subject}&body=${body}`;
+}
 
 export function ContactSection() {
   const { ref: introRef, className: introClassName, style: introStyle } = useReveal<HTMLDivElement>({ delay: 0 });
@@ -64,10 +74,22 @@ export function ContactSection() {
     if (Object.keys(validationErrors).length > 0) return;
 
     setStatus('sending');
+    const endpoint = import.meta.env.VITE_CONTACT_FORM_ENDPOINT;
+
+    if (!endpoint) {
+      window.location.href = buildMailtoFallback(values);
+      setStatus('success-email');
+      setValues(initialValues);
+      return;
+    }
+
     try {
-      // TODO: wire up to a real quote-request endpoint. Stubbed for now so
-      // the form is fully interactive ahead of backend integration.
-      await new Promise((resolve) => setTimeout(resolve, 900));
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values),
+      });
+      if (!response.ok) throw new Error(`Request failed with ${response.status}`);
       setStatus('success');
       setValues(initialValues);
     } catch {
@@ -114,129 +136,144 @@ export function ContactSection() {
           style={formStyle}
           noValidate
           onSubmit={handleSubmit}
-        >
-          {status === 'success' ? (
-            <div className="contact__success" role="status">
-              <CheckIcon className="contact__success-icon" />
-              <div>
-                <p className="contact__success-title">Request received.</p>
-                <p className="contact__success-body">
-                  Thanks &mdash; we'll follow up within one business day. For
-                  anything urgent, call {business.phone}.
-                </p>
-              </div>
-            </div>
-          ) : (
-            <>
-              <div className="contact__field">
-                <label htmlFor={`${formId}-name`}>Name</label>
-                <input
-                  id={`${formId}-name`}
-                  name="name"
-                  type="text"
-                  autoComplete="name"
-                  value={values.name}
-                  onChange={(e) => updateField('name', e.target.value)}
-                  aria-invalid={Boolean(errors.name)}
-                  aria-describedby={errors.name ? `${formId}-name-error` : undefined}
-                />
-                {errors.name && (
-                  <p className="contact__error" id={`${formId}-name-error`}>
-                    {errors.name}
-                  </p>
-                )}
-              </div>
-
-              <div className="contact__field-row">
-                <div className="contact__field">
-                  <label htmlFor={`${formId}-phone`}>Phone</label>
-                  <input
-                    id={`${formId}-phone`}
-                    name="phone"
-                    type="tel"
-                    autoComplete="tel"
-                    value={values.phone}
-                    onChange={(e) => updateField('phone', e.target.value)}
-                    aria-invalid={Boolean(errors.phone)}
-                    aria-describedby={errors.phone ? `${formId}-phone-error` : undefined}
-                  />
+            >
+              {status === 'success' || status === 'success-email' ? (
+                <div className="contact__success" role="status">
+                  <CheckIcon className="contact__success-icon" />
+                  <div>
+                    <p className="contact__success-title">
+                      {status === 'success-email' ? 'Almost there.' : 'Request received.'}
+                    </p>
+                    <p className="contact__success-body">
+                      {status === 'success-email' ? (
+                        <>
+                          We've opened your email app with the details filled in
+                          &mdash; hit send to reach us. If nothing opened, email{' '}
+                          <a href={business.emailHref} className="contact__success-link">
+                            {business.email}
+                          </a>{' '}
+                          directly or call {business.phone}.
+                        </>
+                      ) : (
+                        <>
+                          Thanks &mdash; we'll follow up within one business day. For
+                          anything urgent, call {business.phone}.
+                        </>
+                      )}
+                    </p>
+                  </div>
                 </div>
-                <div className="contact__field">
-                  <label htmlFor={`${formId}-email`}>Email</label>
-                  <input
-                    id={`${formId}-email`}
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    value={values.email}
-                    onChange={(e) => updateField('email', e.target.value)}
-                    aria-invalid={Boolean(errors.email)}
-                    aria-describedby={errors.email ? `${formId}-email-error` : undefined}
-                  />
-                  {errors.email && (
-                    <p className="contact__error" id={`${formId}-email-error`}>
-                      {errors.email}
+              ) : (
+                <>
+                  <div className="contact__field">
+                    <label htmlFor={`${formId}-name`}>Name</label>
+                    <input
+                      id={`${formId}-name`}
+                      name="name"
+                      type="text"
+                      autoComplete="name"
+                      value={values.name}
+                      onChange={(e) => updateField('name', e.target.value)}
+                      aria-invalid={Boolean(errors.name)}
+                      aria-describedby={errors.name ? `${formId}-name-error` : undefined}
+                    />
+                    {errors.name && (
+                      <p className="contact__error" id={`${formId}-name-error`}>
+                        {errors.name}
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="contact__field-row">
+                    <div className="contact__field">
+                      <label htmlFor={`${formId}-phone`}>Phone</label>
+                      <input
+                        id={`${formId}-phone`}
+                        name="phone"
+                        type="tel"
+                        autoComplete="tel"
+                        value={values.phone}
+                        onChange={(e) => updateField('phone', e.target.value)}
+                        aria-invalid={Boolean(errors.phone)}
+                        aria-describedby={errors.phone ? `${formId}-phone-error` : undefined}
+                      />
+                    </div>
+                    <div className="contact__field">
+                      <label htmlFor={`${formId}-email`}>Email</label>
+                      <input
+                        id={`${formId}-email`}
+                        name="email"
+                        type="email"
+                        autoComplete="email"
+                        value={values.email}
+                        onChange={(e) => updateField('email', e.target.value)}
+                        aria-invalid={Boolean(errors.email)}
+                        aria-describedby={errors.email ? `${formId}-email-error` : undefined}
+                      />
+                      {errors.email && (
+                        <p className="contact__error" id={`${formId}-email-error`}>
+                          {errors.email}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  {errors.phone && (
+                    <p className="contact__error" id={`${formId}-phone-error`}>
+                      {errors.phone}
                     </p>
                   )}
-                </div>
-              </div>
-              {errors.phone && (
-                <p className="contact__error" id={`${formId}-phone-error`}>
-                  {errors.phone}
-                </p>
+
+                  <div className="contact__field">
+                    <label htmlFor={`${formId}-project`}>Project type</label>
+                    <select
+                      id={`${formId}-project`}
+                      name="projectType"
+                      value={values.projectType}
+                      onChange={(e) => updateField('projectType', e.target.value)}
+                      aria-invalid={Boolean(errors.projectType)}
+                      aria-describedby={errors.projectType ? `${formId}-project-error` : undefined}
+                    >
+                      <option value="" disabled>
+                        Choose one
+                      </option>
+                      {projectTypes.map((type) => (
+                        <option key={type} value={type}>
+                          {type}
+                        </option>
+                      ))}
+                    </select>
+                    {errors.projectType && (
+                      <p className="contact__error" id={`${formId}-project-error`}>
+                        {errors.projectType}
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="contact__field">
+                    <label htmlFor={`${formId}-message`}>What are you looking to do?</label>
+                    <textarea
+                      id={`${formId}-message`}
+                      name="message"
+                      rows={4}
+                      value={values.message}
+                      onChange={(e) => updateField('message', e.target.value)}
+                      placeholder="A few details help us quote accurately &mdash; rough size, timeline, anything you already know you want."
+                    />
+                  </div>
+
+                  {status === 'error' && (
+                    <p className="contact__error contact__error--form" role="alert">
+                      Something went wrong sending your request. Please call{' '}
+                      {business.phone} instead, or try again.
+                    </p>
+                  )}
+
+                  <button type="submit" className="btn btn--primary contact__submit" disabled={status === 'sending'}>
+                    {status === 'sending' ? 'Sending…' : 'Send request'}
+                  </button>
+                </>
               )}
-
-              <div className="contact__field">
-                <label htmlFor={`${formId}-project`}>Project type</label>
-                <select
-                  id={`${formId}-project`}
-                  name="projectType"
-                  value={values.projectType}
-                  onChange={(e) => updateField('projectType', e.target.value)}
-                  aria-invalid={Boolean(errors.projectType)}
-                  aria-describedby={errors.projectType ? `${formId}-project-error` : undefined}
-                >
-                  <option value="" disabled>
-                    Choose one
-                  </option>
-                  {projectTypes.map((type) => (
-                    <option key={type} value={type}>
-                      {type}
-                    </option>
-                  ))}
-                </select>
-                {errors.projectType && (
-                  <p className="contact__error" id={`${formId}-project-error`}>
-                    {errors.projectType}
-                  </p>
-                )}
-              </div>
-
-              <div className="contact__field">
-                <label htmlFor={`${formId}-message`}>What are you looking to do?</label>
-                <textarea
-                  id={`${formId}-message`}
-                  name="message"
-                  rows={4}
-                  value={values.message}
-                  onChange={(e) => updateField('message', e.target.value)}
-                  placeholder="A few details help us quote accurately &mdash; rough size, timeline, anything you already know you want."
-                />
-              </div>
-
-              {status === 'error' && (
-                <p className="contact__error contact__error--form" role="alert">
-                  Something went wrong sending your request. Please call{' '}
-                  {business.phone} instead, or try again.
-                </p>
-              )}
-
-              <button type="submit" className="btn btn--primary contact__submit" disabled={status === 'sending'}>
-                {status === 'sending' ? 'Sending…' : 'Send request'}
-              </button>
-            </>
-          )}
-        </form>
+            </form>
       </div>
     </section>
   );

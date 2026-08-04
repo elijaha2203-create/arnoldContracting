@@ -184,34 +184,43 @@
 
 .site-header__mobile {
   border-top: 1px solid var(--hairline);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
   background: var(--surface-0);
   overflow: clip;
   max-height: 0;
-  padding: 0 clamp(1.25rem, 4vw, 2.5rem);
-  opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform: translateY(-12px);
-  filter: blur(4px);
-  /* transition-property order: max-height, padding, opacity, transform, filter, visibility */
-  transition-property: max-height, padding, opacity, transform, filter, visibility;
-  transition-duration: var(--duration-panel-slow), var(--duration-panel), var(--duration-panel), var(--duration-panel), var(--duration-panel), 0ms;
+  /* only max-height animates layout; padding/opacity/transform/filter live on the inner wrapper so they never fight the reflow */
+  transition-property: max-height, visibility;
+  transition-duration: var(--duration-panel-slow), 0ms;
   transition-timing-function: var(--ease-out-expo);
-  transition-delay: 0ms, 0ms, 0ms, 0ms, 0ms, var(--duration-panel);
+  transition-delay: 0ms, var(--duration-panel-slow);
 }
 
 .site-header__mobile.is-open {
   max-height: 32rem;
-  padding: var(--space-lg) clamp(1.25rem, 4vw, 2.5rem) var(--space-xl);
-  opacity: 1;
   visibility: visible;
   pointer-events: auto;
+  transition-delay: 0ms;
+}
+
+.site-header__mobile-inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  padding: var(--space-lg) clamp(1.25rem, 4vw, 2.5rem) var(--space-xl);
+  opacity: 0;
+  transform: translateY(-12px);
+  filter: blur(4px);
+  transition-property: opacity, transform, filter;
+  transition-duration: var(--duration-panel);
+  transition-timing-function: var(--ease-out-expo);
+}
+
+.site-header__mobile.is-open .site-header__mobile-inner {
+  opacity: 1;
   transform: translateY(0);
   filter: blur(0);
-  transition-delay: 0ms;
+  transition-delay: 80ms;
 }
 
 .site-header__mobile ul {

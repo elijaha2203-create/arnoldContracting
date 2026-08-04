@@ -50,13 +50,6 @@
   gap: var(--space-lg);
 }
 
-.hero__eyebrow {
-  font-weight: 700;
-  font-size: 0.95rem;
-  color: var(--sage);
-  letter-spacing: 0.02em;
-}
-
 .hero__headline {
   font-size: clamp(2.25rem, 5.5vw, 4.25rem);
   font-weight: 900;
